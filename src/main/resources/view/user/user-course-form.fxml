@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootNode" prefHeight="616.0" prefWidth="635.0" style="-fx-background-radius: 10; -fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.UserCourseFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f6e58d" height="63.0" layoutX="8.0" layoutY="56.0" stroke="#f6e58d" strokeType="INSIDE" width="433.0" />
+      <TableView fx:id="tblCourse" layoutX="8.0" layoutY="118.0" prefHeight="493.0" prefWidth="618.0">
+        <columns>
+          <TableColumn fx:id="lblProgramId" prefWidth="126.0" text="Program ID" />
+          <TableColumn fx:id="lblProgramName" prefWidth="209.0" text="Program Name" />
+            <TableColumn fx:id="lblDuration" prefWidth="130.0" text="Duration" />
+            <TableColumn fx:id="lblFee" prefWidth="133.0" text="Fee(LKR)" />
+        </columns>
+      </TableView>
+      <Text layoutX="8.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program List" wrappingWidth="243.380859375">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="btnSearch" buttonType="RAISED" layoutX="346.0" layoutY="77.0" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #1abc9c;" text="Search" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <TextField fx:id="txtSearch" layoutX="34.0" layoutY="77.0" prefHeight="26.0" prefWidth="301.0" promptText="Enter Program ID" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/icons/search.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblDate" layoutX="467.0" layoutY="11.0" text="D" textFill="#2c3e50">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
