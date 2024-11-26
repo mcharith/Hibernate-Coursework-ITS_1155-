@@ -34,6 +34,16 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
+    public Course searchByProgramId(String programId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Course course = (Course) session.createQuery("from Course where programId = :programId").setParameter("programId", programId).uniqueResult();
+        transaction.commit();
+        session.close();
+        return course;
+    }
+
+    @Override
     public Course getObject(String value) {
         return null;
     }
@@ -59,10 +69,11 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public boolean delete(Course object) {
+    public boolean delete(String id) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(object);
+        Course course = (Course) session.get(Course.class, id);
+        session.delete(course);
         transaction.commit();
         session.close();
         return true;

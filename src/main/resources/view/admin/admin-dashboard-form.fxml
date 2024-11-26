@@ -101,6 +101,21 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="btnUserManage" buttonType="RAISED" layoutX="11.0" layoutY="215.0" onAction="#btnUserManageOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-background-color: #f5f6fa; -fx-border-radius: 20; -fx-background-radius: 10;" text="   User Manage   ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/icons/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="node" layoutX="224.0" layoutY="3.0" prefHeight="616.0" prefWidth="635.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">

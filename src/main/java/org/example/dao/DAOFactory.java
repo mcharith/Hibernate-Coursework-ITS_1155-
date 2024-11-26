@@ -1,15 +1,13 @@
 package org.example.dao;
 
-import org.example.dao.custom.impl.CourseDAOImpl;
-import org.example.dao.custom.impl.StudentDAOImpl;
-import org.example.dao.custom.impl.UserDAOImpl;
+import org.example.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
     private DAOFactory(){}
 
     public enum DAOType{
-        Course,User,Student
+        Course,User,Student,Admin,Register,Payment;
     }
 
     public static DAOFactory getDaoFactory(){
@@ -24,6 +22,12 @@ public class DAOFactory {
                 return new UserDAOImpl();
             case Student:
                 return new StudentDAOImpl();
+                case Admin:
+                    return new AdminDAOImpl();
+            case Register:
+                return new RegisterDAOImpl();
+            case Payment:
+                return new PaymentDAOImpl();
                 default:
                     return null;
         }

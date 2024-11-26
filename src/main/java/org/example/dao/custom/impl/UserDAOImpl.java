@@ -5,6 +5,7 @@ import org.example.dao.custom.UserDAO;
 import org.example.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -21,11 +22,16 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(User object) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(object);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
-    public boolean delete(User object) {
+    public boolean delete(String id) {
         return false;
     }
 
@@ -41,6 +47,34 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAll() {
-        return List.of();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<User> users = session.createQuery("from User").list();
+        transaction.commit();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public String getCurrentId() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("select userId from User order by userId desc limit 1");
+        String userId = (String) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return userId;
+    }
+
+    @Override
+    public User searchByEmail(String email) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = (User) session.createQuery("from User where email = :email")
+                .setParameter("email", email)
+                .uniqueResult();
+        transaction.commit();
+        session.close();
+        return user;
     }
 }

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="616.0" prefWidth="635.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.StudentAddProgramFormController">
+<AnchorPane fx:id="rootNode" prefHeight="616.0" prefWidth="635.0" style="-fx-background-radius: 10;" stylesheets="@../../assets/styles/userManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.StudentAddProgramFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="19.0" layoutY="348.0" stroke="BLACK" strokeType="INSIDE" width="490.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cccccc" height="215.0" layoutY="401.0" stroke="#cccccc" strokeType="INSIDE" width="635.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccebff" height="43.0" layoutX="19.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="214.0" layoutX="19.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
       <Text layoutX="66.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Register For Program">
@@ -23,10 +24,13 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <JFXComboBox layoutX="27.0" layoutY="134.0" prefHeight="26.0" prefWidth="273.0" promptText="Student ID" />
-      <Label layoutX="27.0" layoutY="193.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
-      <Label layoutX="27.0" layoutY="246.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
-      <Label layoutX="27.0" layoutY="301.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <JFXComboBox fx:id="cmbStudentId" layoutX="27.0" layoutY="134.0" onAction="#cmbStudentIdOnAction" prefHeight="26.0" prefWidth="273.0" promptText="Student ID">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXComboBox>
+      <Label fx:id="lblStudentName" layoutX="27.0" layoutY="193.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <Label fx:id="lblEmail" layoutX="27.0" layoutY="246.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <Label fx:id="lblTelephone" layoutX="27.0" layoutY="301.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
       <Text layoutX="27.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name :" />
       <Text layoutX="27.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" />
       <Text layoutX="27.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone :" />
@@ -37,10 +41,13 @@
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccebff" height="43.0" layoutX="324.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="214.0" layoutX="324.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
-      <JFXComboBox layoutX="332.0" layoutY="134.0" prefHeight="26.0" prefWidth="273.0" promptText="Program ID" />
-      <Label layoutX="332.0" layoutY="193.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
-      <Label layoutX="332.0" layoutY="246.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
-      <Label layoutX="332.0" layoutY="301.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <JFXComboBox fx:id="cmbProgramID" layoutX="332.0" layoutY="134.0" onAction="#cmbProgrmIdOnAction" prefHeight="26.0" prefWidth="273.0" promptText="Program ID">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXComboBox>
+      <Label fx:id="lblProgramName" layoutX="332.0" layoutY="193.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <Label fx:id="lblDuration" layoutX="332.0" layoutY="246.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
+      <Label fx:id="lblFee" layoutX="332.0" layoutY="301.0" prefHeight="25.0" prefWidth="273.0" style="-fx-background-color: #e6f5ff;" />
       <Text layoutX="332.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Name :" />
       <Text layoutX="332.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration :" />
       <Text layoutX="332.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee (LKR) :" />
@@ -59,7 +66,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="158.0" layoutY="66.0" text="RP000-001" textFill="#00004d">
+      <Label fx:id="lblRegisterId" layoutX="158.0" layoutY="66.0" text="RP000-001" textFill="#00004d">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
@@ -69,37 +76,50 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="328.0" layoutY="68.0" text="2023 - 11 -06" textFill="#00004d">
+      <Label fx:id="lblDate" layoutX="328.0" layoutY="68.0" text="2023 - 11 -06" textFill="#00004d">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="tblRegistationDetails" layoutX="18.0" layoutY="461.0" prefHeight="108.0" prefWidth="594.0" stylesheets="@../../assets/styles/style.css">
+      <TableView fx:id="tblRegistationDetails" layoutX="20.0" layoutY="412.0" prefHeight="150.0" prefWidth="594.0" stylesheets="@../../assets/styles/style.css">
         <columns>
-          <TableColumn fx:id="clmProgramId" prefWidth="67.0" text="Program ID" />
-          <TableColumn id="name" fx:id="clmName" prefWidth="117.0" text="Name" />
-            <TableColumn fx:id="clmFee" prefWidth="126.0" text="Fee(LKR)" />
-            <TableColumn fx:id="clmAdvancedAmmount" prefWidth="113.0" text="Advanced amount" />
-            <TableColumn fx:id="clmRamainingAmount" prefWidth="116.0" text="Remaining amount" />
-            <TableColumn fx:id="clmAction" prefWidth="55.0" text="Action" />
+          <TableColumn fx:id="clmRegisterID" prefWidth="91.0" text="Register ID" />
+          <TableColumn id="name" fx:id="clmStudentID" prefWidth="105.0" text="Student ID" />
+            <TableColumn fx:id="clmProgramID" prefWidth="121.0" text="Program ID" />
+            <TableColumn fx:id="clmAdvancedAmount" prefWidth="159.0" text="Advanced Amount(LKR)" />
+            <TableColumn fx:id="clmDate" prefWidth="116.0" text="Date" />
         </columns>
       </TableView>
-      <Text layoutX="27.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adavanced Amount (LKR) :" />
-      <TextField layoutX="24.0" layoutY="367.0" prefHeight="26.0" prefWidth="477.0" />
-      <Label layoutX="25.0" layoutY="418.0" prefHeight="25.0" prefWidth="477.0" style="-fx-background-color: #b3ffcc;" />
-      <Text layoutX="27.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining Amount (LKR) :" />
       <Label layoutX="458.0" layoutY="66.0" text="Time :">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="508.0" layoutY="67.0" text="00 :  00 : 00" textFill="#00004d">
+      <Label fx:id="lblTime" layoutX="508.0" layoutY="67.0" text="00 :  00 : 00" textFill="#00004d">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="519.0" layoutY="358.0" prefHeight="32.0" prefWidth="95.0" stylesheets="@../../assets/styles/style.css" text="Add" />
-      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="519.0" layoutY="401.0" prefHeight="32.0" prefWidth="95.0" stylesheets="@../../assets/styles/style.css" text="Clear" />
-      <JFXButton fx:id="btnRegister" layoutX="453.0" layoutY="577.0" prefHeight="32.0" prefWidth="145.0" stylesheets="@../../assets/styles/style.css" text="Register " />
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="276.0" layoutY="363.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="75.0" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="537.0" layoutY="363.0" onAction="#btnClearOnAction" prefHeight="32.0" prefWidth="75.0" text="Clear">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="364.0" layoutY="362.0" onAction="#btnUpdateOnAction" prefHeight="32.0" prefWidth="75.0" text="Update">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="451.0" layoutY="363.0" onAction="#btnDeleteOnAction" prefHeight="32.0" prefWidth="75.0" text="Delete">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnMakePayment" buttonType="RAISED" layoutX="489.0" layoutY="572.0" onAction="#btnMakePymentOnAction" prefHeight="32.0" prefWidth="124.0" text="Make Payment" />
+      <TextField fx:id="txtAdvancedAmount" layoutX="19.0" layoutY="364.0" prefHeight="28.0" prefWidth="239.0" />
+      <Text layoutX="21.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advanced Amount (LKR) :" />
    </children>
 </AnchorPane>

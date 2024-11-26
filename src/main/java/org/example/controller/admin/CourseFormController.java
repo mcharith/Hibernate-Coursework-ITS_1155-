@@ -121,7 +121,7 @@ public class CourseFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-        boolean isDeleted = courseBO.delete(new CourseDTO(txtProgramId.getText(),txtProgramName.getText(),txtDuration.getText(),Integer.parseInt(txtFee.getText())));
+        boolean isDeleted = courseBO.delete(txtProgramId.getText());
         if (isDeleted) {
             clearTextFields();
             loadAllCoursers();

@@ -34,6 +34,16 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
+    public Student searchByStudentId(String studentId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = (Student) session.createQuery("from Student where studentId = :studentId").setParameter("studentId",studentId).uniqueResult();
+        transaction.commit();
+        session.close();
+        return student;
+    }
+
+    @Override
     public Student getObject(String value) {
         return null;
     }
@@ -57,10 +67,11 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean delete(Student object) {
+    public boolean delete(String id) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(object);
+        Student student = (Student) session.get(Student.class, id);
+        session.delete(student);
         transaction.commit();
         return true;
     }

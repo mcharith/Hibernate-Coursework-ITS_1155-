@@ -25,8 +25,8 @@ public class StudentBOImpl implements StudentBO {
     }
 
     @Override
-    public boolean delete(StudentDTO studentDTO) {
-        return studentDAO.delete(new Student(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getAddress(),studentDTO.getEmail(),studentDTO.getTelephone(),studentDTO.getDob()));
+    public boolean delete(String id) {
+        return studentDAO.delete(id);
     }
 
     @Override
@@ -44,7 +44,12 @@ public class StudentBOImpl implements StudentBO {
         List<StudentDTO> studentDTOS = new ArrayList<>();
         List<Student> students = studentDAO.getAll();
         for (Student student : students) {
-            studentDTOS.add(new StudentDTO(student.getStudentId(),student.getStudentName(),student.getAddress(),student.getEmail(),student.getTelephone(),student.getDob()));
+            studentDTOS.add(new StudentDTO(student.getStudentId(),
+                    student.getStudentName(),
+                    student.getAddress(),
+                    student.getEmail(),
+                    student.getTelephone(),
+                    student.getDob()));
         }
         return studentDTOS;
     }
@@ -57,5 +62,10 @@ public class StudentBOImpl implements StudentBO {
     @Override
     public String getCurrentId() {
         return studentDAO.getCurrentId();
+    }
+
+    @Override
+    public Student searchByStudentId(String studentId) {
+        return studentDAO.searchByStudentId(studentId);
     }
 }

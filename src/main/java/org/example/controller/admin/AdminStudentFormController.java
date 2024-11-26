@@ -24,6 +24,5 @@ public class AdminStudentFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-
     }
 }

@@ -7,6 +7,7 @@
     -fx-background-color: #0052cc;    /* Hover background color */
     -fx-text-fill: white;         /* Hover text color */
     -fx-border-width: 2px;          /* Optional border width */
+    -fx-font-weight: bold;
 }
 
 #btnClear{
@@ -17,6 +18,7 @@
     -fx-background-color: #cc0000;
     -fx-text-fill: white;
     -fx-border-width: 2px;
+    -fx-font-weight: bold;
 }
 
 #btnRegister{
@@ -27,6 +29,7 @@
     -fx-background-color: #18b48a;
     -fx-text-fill: white;
     -fx-border-width: 2px;
+    -fx-font-weight: bold;
 }
 /* Table styling */
 #tblRegistationDetails {

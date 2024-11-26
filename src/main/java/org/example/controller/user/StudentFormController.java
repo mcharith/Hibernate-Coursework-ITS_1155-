@@ -103,7 +103,13 @@ public class StudentFormController {
         ObservableList<StudentTm> studentTms = FXCollections.observableArrayList();
         List<StudentDTO>studentDTOS = studentBO.getAll();
         for (StudentDTO studentDTO : studentDTOS) {
-            StudentTm studentTm = new StudentTm(studentDTO.getStudentId(),studentDTO.getStudentName(),studentDTO.getAddress(),studentDTO.getEmail(),studentDTO.getTelephone(),studentDTO.getDob());
+            StudentTm studentTm = new StudentTm(studentDTO.getStudentId(),
+                    studentDTO.getStudentName(),
+                    studentDTO.getAddress(),
+                    studentDTO.getEmail(),
+                    studentDTO.getTelephone(),
+                    studentDTO.getDob()
+            );
             studentTms.add(studentTm);
         }
         tblStudent.setItems(studentTms);
@@ -137,16 +143,22 @@ public class StudentFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-        boolean isDeleted = studentBO.delete(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),
-                txtEmail.getText(),Integer.parseInt(txtTelephone.getText()),txtDob.getText()));
-        if (isDeleted) {
-            cleanTextFields();
-            loadAllStudents();
-            tblStudent.refresh();
-            txtStudentId.setText(generateStudentId());
-            new Alert(Alert.AlertType.INFORMATION,"Student Deleted Successfully!", ButtonType.OK).show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"Student Deleted Failed!", ButtonType.OK).show();
+        try {
+            // Attempt to delete the student using only the StudentId
+            boolean isDeleted = studentBO.delete(txtStudentId.getText());
+
+            if (isDeleted) {
+                cleanTextFields();
+                loadAllStudents();
+                tblStudent.refresh();
+                txtStudentId.setText(generateStudentId());
+                new Alert(Alert.AlertType.INFORMATION, "Student Deleted Successfully!", ButtonType.OK).show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Student Deletion Failed!", ButtonType.OK).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "An error occurred: " + e.getMessage(), ButtonType.OK).show();
         }
     }
 

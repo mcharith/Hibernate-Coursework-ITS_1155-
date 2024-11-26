@@ -22,8 +22,8 @@ public class CourseBOImpl implements CourseBO {
     }
 
     @Override
-    public boolean delete(CourseDTO courseDTO) {
-        return courseDAO.delete(new Course(courseDTO.getProgramId(), courseDTO.getProgramName(),courseDTO.getDuration(),courseDTO.getFee()));
+    public boolean delete(String id) {
+        return courseDAO.delete(id);
     }
 
     @Override
@@ -54,5 +54,10 @@ public class CourseBOImpl implements CourseBO {
     @Override
     public String getCurrentId() {
         return courseDAO.getCurrentId();
+    }
+
+    @Override
+    public Course searchByProgrameId(String programeId) {
+        return courseDAO.searchByProgramId(programeId);
     }
 }

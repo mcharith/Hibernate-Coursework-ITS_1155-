@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="node" prefHeight="351.0" prefWidth="277.0" style="-fx-background-color: #dcdde1; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RegisterFormController">
+<AnchorPane fx:id="node" prefHeight="351.0" prefWidth="277.0" style="-fx-background-color: #dcdde1; -fx-background-radius: 10;" stylesheets="@../assets/styles/registerStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RegisterFormController">
    <children>
       <Circle fill="#1dd1a1" layoutX="137.0" layoutY="-42.0" radius="134.0" stroke="#1dd1a1" strokeType="INSIDE" />
       <Text layoutX="10.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
@@ -24,14 +25,15 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="txtName" layoutX="11.0" layoutY="116.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Name" />
-      <TextField fx:id="txtTele" layoutX="11.0" layoutY="149.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Telephone" />
-      <TextField fx:id="txtEmail" layoutX="11.0" layoutY="182.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Email" />
-      <TextField fx:id="txtJobRole" layoutX="11.0" layoutY="215.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Job Role" />
-      <PasswordField fx:id="txPassword" layoutX="11.0" layoutY="248.0" opacity="0.9" prefHeight="26.0" prefWidth="249.0" promptText="Password" />
-      <JFXButton fx:id="btnRegistre" buttonType="RAISED" layoutX="98.0" layoutY="285.0" onAction="#btnRegisterOnAction" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #2ecc71;" text="Register" textFill="WHITE" />
-      <Text layoutX="34.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you have an Account ?" wrappingWidth="155.90850830078125" />
-      <Hyperlink fx:id="hyperLogIn" layoutX="176.0" layoutY="319.0" onAction="#hyperLogInOnAction" text="Log in here" />
-      <TextField fx:id="txtId" layoutX="11.0" layoutY="81.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="User ID" />
+      <TextField fx:id="txtName" layoutX="14.0" layoutY="151.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Name" />
+      <TextField fx:id="txtTele" layoutX="14.0" layoutY="186.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Telephone" />
+      <TextField fx:id="txtEmail" layoutX="14.0" layoutY="220.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="Email" />
+      <PasswordField fx:id="txPassword" layoutX="14.0" layoutY="254.0" opacity="0.9" prefHeight="26.0" prefWidth="249.0" promptText="Password" />
+      <JFXButton fx:id="btnRegistre" buttonType="RAISED" layoutX="96.0" layoutY="326.0" onAction="#btnRegisterOnAction" prefHeight="26.0" prefWidth="81.0" text="Register" textFill="WHITE" />
+      <Text layoutX="32.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you have an Account ?" wrappingWidth="155.90850830078125" />
+      <Hyperlink fx:id="hyperLogIn" layoutX="174.0" layoutY="360.0" onAction="#hyperLogInOnAction" text="Log in here" />
+      <TextField fx:id="txtId" layoutX="14.0" layoutY="116.0" opacity="0.9" prefHeight="26.0" prefWidth="250.0" promptText="User ID" />
+      <JFXComboBox fx:id="cmbAccountType" layoutX="14.0" layoutY="78.0" onAction="#cmbAccountTypeOnAction" prefHeight="26.0" prefWidth="251.0" promptText="Select account type" />
+      <PasswordField fx:id="txtConfirmPassword" layoutX="14.0" layoutY="290.0" prefHeight="26.0" prefWidth="250.0" promptText="Confirm Password" />
    </children>
 </AnchorPane>
