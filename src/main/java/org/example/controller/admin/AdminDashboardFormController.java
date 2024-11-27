@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class AdminDashboardFormController {
     public Label lblDate;
     public Label lblTime;
     public JFXButton btnUserManage;
+    public JFXButton btnEnrollmentDetails;
 
     public void btnCourseFormOnAction(ActionEvent actionEvent) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/courses-form.fxml"));
@@ -41,10 +43,16 @@ public class AdminDashboardFormController {
         node.getChildren().add(anchorPane);
     }
 
-    public void btnDashboardFormOnActin(ActionEvent actionEvent) {
+    public void btnDashboardFormOnActin(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/admin-back-to-dashboard.fxml"));
+        node.getChildren().clear();
+        node.getChildren().add(anchorPane);
     }
 
-    public void btnManageDetailsOnAction(ActionEvent actionEvent) {
+    public void btnManageDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/admin-payment-details-form.fxml"));
+        node.getChildren().clear();
+        node.getChildren().add(anchorPane);
     }
 
     public void btnLogOutOnAction(ActionEvent actionEvent) throws IOException {
@@ -56,8 +64,15 @@ public class AdminDashboardFormController {
         stage.show();
     }
 
-    public void btnUserManageOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/admin-user-manage-form.fxml"));
+
+    public void btnEnrollmentDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/admin-enrollment-details-form.fxml"));
+        node.getChildren().clear();
+        node.getChildren().add(anchorPane);
+    }
+
+    public void iconSettingsOnAction(MouseEvent mouseEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(this.getClass().getResource("/view/admin/admin-setting-form.fxml"));
         node.getChildren().clear();
         node.getChildren().add(anchorPane);
     }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="616.0" prefWidth="635.0" stylesheets="@../../assets/styles/userManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminPaymentFormController">
+   <children>
+      <Text layoutX="4.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Details Form">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/icons/details.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtIds" layoutX="38.0" layoutY="49.0" prefHeight="30.0" prefWidth="350.0" promptText="Enter Id Here" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/icons/search.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnSearch" layoutX="397.0" layoutY="49.0" onAction="#btnSearchOnAction" prefHeight="30.0" prefWidth="85.0" text="Serarch" />
+      <TableView fx:id="tblPayment" layoutX="10.0" layoutY="93.0" prefHeight="513.0" prefWidth="614.0">
+        <columns>
+          <TableColumn fx:id="clmPaymentId" prefWidth="72.0" text="Payment ID" />
+          <TableColumn fx:id="clmRegisterId" prefWidth="72.0" text="Register ID" />
+            <TableColumn fx:id="clmFullCourseFee" prefWidth="100.0" text="Full Course Fee" />
+            <TableColumn fx:id="clmAdvancedAmount" prefWidth="112.0" text="Advanced Amount" />
+            <TableColumn fx:id="clmRemaining" prefWidth="82.0" text="Remaining" />
+            <TableColumn fx:id="clmNewPayment" prefWidth="88.0" text="New payment" />
+            <TableColumn fx:id="clmBalance" prefWidth="87.0" text="Balance" />
+        </columns>
+      </TableView>
+      <Label layoutX="486.0" layoutY="14.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="536.0" layoutY="15.0" text="2024-11-27" textFill="#041c80">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

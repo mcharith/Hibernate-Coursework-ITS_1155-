@@ -18,6 +18,7 @@ import org.example.bo.custom.UserBO;
 import org.example.dto.AdminDTO;
 import org.example.dto.UserDTO;
 import org.example.entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,12 +61,14 @@ public class LoginFormController {
             if (type.equals("User")) {
                 List<UserDTO> allUsers = userBO.getAll();
                 for (UserDTO userDTO : allUsers) {
-                    if (userDTO.getUserName().equals(userName) && userDTO.getPassword().equals(password)) {
+                    if (userDTO.getUserName().equals(userName) && BCrypt.checkpw(password, userDTO.getPassword())) {
+                        // Password matches
                         isCredentialOk = true;
                         loggedUserEmail = userDTO.getEmail();
                         loggedUserName = userDTO.getUserName();
                         loggedUserId = userDTO.getUserId();
                         telephone = userDTO.getTelephone();
+
                         showAlert(Alert.AlertType.INFORMATION, "Login Successful", "Welcome, " + userDTO.getUserName());
 
                         // Load User Dashboard
@@ -76,19 +79,23 @@ public class LoginFormController {
             } else if (type.equals("Admin")) {
                 List<AdminDTO> allAdmins = adminBO.getAll();
                 for (AdminDTO adminDTO : allAdmins) {
-                    if (adminDTO.getUserName().equals(userName) && adminDTO.getPassword().equals(password)) {
+                    if (adminDTO.getUserName().equals(userName) && BCrypt.checkpw(password, adminDTO.getPassword())) {
+                        // Password matches
                         isCredentialOk = true;
                         loggedUserEmail = adminDTO.getEmail();
                         loggedUserName = adminDTO.getUserName();
                         loggedUserId = adminDTO.getUserId();
                         telephone = adminDTO.getTelephone();
+
                         showAlert(Alert.AlertType.INFORMATION, "Login Successful", "Welcome, " + adminDTO.getUserName());
 
+                        // Load Admin Dashboard
                         loadScene("/view/admin/admin-dashboard-form.fxml", "Welcome " + adminDTO.getUserName());
                         break;
                     }
                 }
             }
+
             if (!isCredentialOk) {
                 showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
             }

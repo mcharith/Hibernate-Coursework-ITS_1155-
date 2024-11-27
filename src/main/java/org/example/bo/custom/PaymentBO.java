@@ -13,4 +13,6 @@ public interface PaymentBO extends SuperBo{
     int getFullFeeAmountByRegisterId(Register selectedRegisterId);
     int getRemainingFeeAmountByRegisterId(Register selectedRegisterId);
     boolean save (PaymentDTO paymentDTO);
+    Payment search(String id);
+    List<PaymentDTO>getAll();
 }

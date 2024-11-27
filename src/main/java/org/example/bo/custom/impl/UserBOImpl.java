@@ -3,7 +3,6 @@ package org.example.bo.custom.impl;
 import org.example.bo.custom.UserBO;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.UserDAO;
-import org.example.dao.custom.impl.UserDAOImpl;
 import org.example.dto.UserDTO;
 import org.example.entity.User;
 
@@ -24,6 +23,16 @@ public class UserBOImpl implements UserBO {
         return userDAO.update(new User(
                 userDTO.getUserId(),userDTO.getUserName(),userDTO.getTelephone(),userDTO.getEmail(),userDTO.getPassword()
         ));
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return userDAO.delete(id);
+    }
+
+    @Override
+    public User search(String id) {
+        return userDAO.search(id);
     }
 
     @Override

@@ -1,18 +1,13 @@
-package org.example.entity;
+package org.example.entity.tm;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.dto.UserDTO;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity
-public class Admin {
-    @Id
+public class UserTm {
     private String userId;
     private String userName;
     private int telephone;

@@ -5,7 +5,9 @@ import org.example.dao.custom.UserDAO;
 import org.example.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 
@@ -14,6 +16,11 @@ public class UserDAOImpl implements UserDAO {
     public boolean save(User object) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
+        User user = (User) object;
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedPassword);
+
         session.save(object);
         transaction.commit();
         session.close();
@@ -24,6 +31,11 @@ public class UserDAOImpl implements UserDAO {
     public boolean update(User object) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
+        User user = (User) object;
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedPassword);
+
         session.update(object);
         transaction.commit();
         session.close();
@@ -32,14 +44,29 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean delete(String id) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = (User) session.get(User.class, id);
+        session.delete(user);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public User search(String id) {
-        return null;
-    }
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
+        NativeQuery<User>nativeQuery = session.createNativeQuery("select * from user where id = '" + id + "'", User.class);
+        nativeQuery.setParameter("id", id);
+
+        List<User> userList = nativeQuery.list();
+        transaction.commit();
+        session.close();
+        return userList.isEmpty() ? null :userList.get(0);
+
+    }
     @Override
     public User get(User object) {
         return null;

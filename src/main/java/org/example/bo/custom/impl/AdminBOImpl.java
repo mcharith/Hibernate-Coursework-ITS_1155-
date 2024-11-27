@@ -17,6 +17,13 @@ public class AdminBOImpl implements AdminBO {
     }
 
     @Override
+    public boolean update(AdminDTO adminDTO) {
+        return adminDAO.update(new Admin(
+                adminDTO.getUserId(),adminDTO.getUserName(),adminDTO.getTelephone(),adminDTO.getEmail(),adminDTO.getPassword()
+        ));
+    }
+
+    @Override
     public String getCurrentId() {
         return adminDAO.getCurrentId();
     }
@@ -33,5 +40,10 @@ public class AdminBOImpl implements AdminBO {
             }
         }
         return adminDTOS;
+    }
+
+    @Override
+    public Admin searchByEmail(String email) {
+        return adminDAO.searchByEmail(email);
     }
 }

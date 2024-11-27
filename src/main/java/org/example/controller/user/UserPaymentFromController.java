@@ -5,12 +5,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.PaymentBO;
 import org.example.bo.custom.RegisterBO;
 import org.example.dto.PaymentDTO;
 import org.example.entity.Register;
+import org.example.entity.tm.PaymentTm;
 
 import java.util.List;
 
@@ -19,14 +21,14 @@ public class UserPaymentFromController {
     public Button btnSave;
     public Button btnUpdate;
     public Button btnClear;
-    public TableView tblPayment;
-    public TableColumn clmPaymentId;
-    public TableColumn clmRegisterId;
-    public TableColumn clmFullCourseFee;
-    public TableColumn clmAdvancedAmount;
-    public TableColumn clmRemainingAmount;
-    public TableColumn clmNewPayment;
-    public TableColumn clmBalance;
+    public TableView<PaymentTm>tblPayment;
+    public TableColumn<?,?> clmPaymentId;
+    public TableColumn<?,?> clmRegisterId;
+    public TableColumn<?,?> clmFullCourseFee;
+    public TableColumn<?,?> clmAdvancedAmount;
+    public TableColumn<?,?> clmRemainingAmount;
+    public TableColumn<?,?> clmNewPayment;
+    public TableColumn<?,?> clmBalance;
     public TextField txtPaymentId;
     public TextField txtAdvancedAmount;
     public TextField txtFullCourseFee;
@@ -41,7 +43,37 @@ public class UserPaymentFromController {
     public void initialize() {
         getRegisterId();
         generatePaymentId();
+        setCellValueFactory();
+        loadAllPayments();
     }
+    private void loadAllPayments() {
+        ObservableList<PaymentTm> paymentsTm = FXCollections.observableArrayList();
+        List<PaymentDTO>paymentDTOS = paymentBO.getAll();
+        for (PaymentDTO paymentDTO : paymentDTOS) {
+            PaymentTm paymentTm = new PaymentTm(
+                    paymentDTO.getPaymentId(),
+                    paymentDTO.getAmount(),
+                    paymentDTO.getPaidAmount(),
+                    paymentDTO.getFullPayment(),
+                    paymentDTO.getPay(),
+                    paymentDTO.getBalance(),
+                    paymentDTO.getRegister()
+            );
+            paymentsTm.add(paymentTm);
+        }
+        tblPayment.setItems(paymentsTm);
+    }
+
+    private void setCellValueFactory() {
+        clmPaymentId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
+        clmRegisterId.setCellValueFactory(new PropertyValueFactory<>("registerId"));
+        clmFullCourseFee.setCellValueFactory(new PropertyValueFactory<>("fullCourseFee"));
+        clmAdvancedAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        clmRemainingAmount.setCellValueFactory(new PropertyValueFactory<>("paidAmount"));
+        clmNewPayment.setCellValueFactory(new PropertyValueFactory<>("pay"));
+        clmBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
+    }
+
     private void generatePaymentId(){
         try {
             String currentId = paymentBO.getCurrentId();
@@ -127,6 +159,7 @@ public class UserPaymentFromController {
                 alert.show();
                 clearFields();
                 generatePaymentId();
+                loadAllPayments();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Payment Failure");

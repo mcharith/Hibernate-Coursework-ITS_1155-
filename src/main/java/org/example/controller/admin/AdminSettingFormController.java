@@ -1,4 +1,4 @@
-package org.example.controller.user;
+package org.example.controller.admin;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -7,15 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.example.bo.BOFactory;
-import org.example.bo.custom.UserBO;
+import org.example.bo.custom.AdminBO;
 import org.example.controller.LoginFormController;
+import org.example.dto.AdminDTO;
 import org.example.dto.UserDTO;
+import org.example.entity.Admin;
 import org.example.entity.User;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.SQLException;
-
-public class UserSettingFormController {
+public class AdminSettingFormController {
     public AnchorPane rootNode;
     public TextField txtLoggedEmail;
     public TextField txtCurrentPassword;
@@ -27,8 +27,8 @@ public class UserSettingFormController {
     public JFXButton btnUpdate;
     public Label lblUserId;
 
-    private User userDTO;
-    UserBO userBO = (UserBO) BOFactory.getBOFactory().getBOType(BOFactory.BOType.User);
+    private Admin adminDTO;
+    AdminBO adminBO = (AdminBO) BOFactory.getBOFactory().getBOType(BOFactory.BOType.Admin);
 
     public void initialize() {
         try {
@@ -37,7 +37,11 @@ public class UserSettingFormController {
             txtTelephone.setText(String.valueOf(LoginFormController.telephone));
             lblUserId.setText(LoginFormController.loggedUserId);
 
-            userDTO = userBO.searchByEmail(LoginFormController.loggedUserEmail);
+            adminDTO = adminBO.searchByEmail(LoginFormController.loggedUserEmail);
+
+            if (adminDTO == null) {
+                new Alert(Alert.AlertType.ERROR, "Admin details not found for the logged-in email.").show();
+            }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, "Error loading user details: " + e.getMessage()).show();
         }
@@ -49,37 +53,40 @@ public class UserSettingFormController {
         String newPassword = txtNewPassword.getText();
         String reEnterPassword = txtReEnterPassword.getText();
 
-        // Check if fields are empty
+        // Validate that all fields are filled
         if (password.isEmpty() || newPassword.isEmpty() || reEnterPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields are required.");
             return;
         }
 
-        // Validate the current password
-        if (!BCrypt.checkpw(password, userDTO.getPassword())) {
+        // Validate current password
+        if (!BCrypt.checkpw(password, adminDTO.getPassword())) {
             showAlert(Alert.AlertType.ERROR, "Invalid Password", "The current password you entered is incorrect.");
             return;
         }
 
-        // Validate new password match
+        // Validate new passwords match
         if (!newPassword.equals(reEnterPassword)) {
             showAlert(Alert.AlertType.ERROR, "Password Mismatch", "New passwords do not match. Please try again.");
             return;
         }
 
         try {
-            // Update the password securely
+            // Hash the new password
             String hashedNewPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-            UserDTO updatedUser = new UserDTO(
-                    userDTO.getUserId(),
-                    userDTO.getUserName(),
+            // Create an updated AdminDTO
+            AdminDTO updatedAdmin = new AdminDTO(
+                    adminDTO.getUserId(),
+                    txtUserName.getText(),
                     email,
                     hashedNewPassword,
-                    userDTO.getTelephone()
+                    Integer.parseInt(txtTelephone.getText())
             );
 
-            boolean isUpdated = userBO.update(updatedUser);
+            // Update the admin using the adminBO
+            boolean isUpdated = adminBO.update(updatedAdmin);
 
+            // Notify user about the result
             if (isUpdated) {
                 showAlert(Alert.AlertType.INFORMATION, "Update Successful", "Your password has been updated.");
                 clearFields();
@@ -98,52 +105,44 @@ public class UserSettingFormController {
         String telephone = txtTelephone.getText();
 
         try {
-            User userdto = userBO.searchByEmail(email);
-
-            if (userdto == null) {
-                new Alert(Alert.AlertType.ERROR, "User not found for the provided email.").show();
-                return;
-            }
-
             if (username.isEmpty() || telephone.isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields are required.");
                 return;
             }
-
 
             int phoneNumber;
             try {
                 phoneNumber = Integer.parseInt(telephone);
             } catch (NumberFormatException e) {
-                new Alert(Alert.AlertType.ERROR, "Invalid telephone number format.").show();
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Telephone must be a numeric value.");
                 return;
             }
 
-            // Perform update
-            boolean isUpdated = userBO.update(new UserDTO(
-                    userdto.getUserId(),
+            AdminDTO updatedAdmin = new AdminDTO(
+                    adminDTO.getUserId(),
                     username,
                     email,
-                    userdto.getPassword(),
+                    adminDTO.getPassword(),
                     phoneNumber
-            ));
+            );
 
+            boolean isUpdated = adminBO.update(updatedAdmin);
 
             if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "User details updated successfully!").show();
+                showAlert(Alert.AlertType.INFORMATION, "Update Successful", "User details updated successfully.");
             } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to update user details.").show();
+                showAlert(Alert.AlertType.ERROR, "Update Failed", "Failed to update user details.");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "An error occurred: " + e.getMessage()).show();
+            showAlert(Alert.AlertType.ERROR, "Error", "An error occurred: " + e.getMessage());
         }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
-        alert.setHeaderText(null);
+        alert.setHeaderText(null); // Optional
         alert.setContentText(message);
         alert.showAndWait();
     }
@@ -152,5 +151,7 @@ public class UserSettingFormController {
         txtCurrentPassword.clear();
         txtNewPassword.clear();
         txtReEnterPassword.clear();
+        txtUserName.clear();
+        txtTelephone.clear();
     }
 }

@@ -15,4 +15,12 @@ public class AdminDTO {
     private int telephone;
     private String email;
     private String password;
+
+    public AdminDTO(String userId, String userName, String email, String password, int telephone) {
+        this.userId = userId;      // Initialize userId
+        this.userName = userName;  // Initialize userName
+        this.email = email;        // Initialize email
+        this.password = password;  // Initialize password
+        this.telephone = telephone; // Initialize telephone
+    }
 }

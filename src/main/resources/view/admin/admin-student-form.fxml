@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -39,5 +40,16 @@
             <Image url="@../../assets/icons/student.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="btnSearch" buttonType="RAISED" layoutX="387.0" layoutY="104.0" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="71.0" stylesheets="@../../assets/styles/userManagement.css" text="Search" textFill="WHITE" />
+      <Label layoutX="476.0" layoutY="23.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="527.0" layoutY="23.0" text="2024-11-27" textFill="#000983">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

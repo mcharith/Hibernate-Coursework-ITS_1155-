@@ -103,7 +103,8 @@ public class StudentFormController {
         ObservableList<StudentTm> studentTms = FXCollections.observableArrayList();
         List<StudentDTO>studentDTOS = studentBO.getAll();
         for (StudentDTO studentDTO : studentDTOS) {
-            StudentTm studentTm = new StudentTm(studentDTO.getStudentId(),
+            StudentTm studentTm = new StudentTm(
+                    studentDTO.getStudentId(),
                     studentDTO.getStudentName(),
                     studentDTO.getAddress(),
                     studentDTO.getEmail(),
@@ -144,7 +145,6 @@ public class StudentFormController {
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
         try {
-            // Attempt to delete the student using only the StudentId
             boolean isDeleted = studentBO.delete(txtStudentId.getText());
 
             if (isDeleted) {

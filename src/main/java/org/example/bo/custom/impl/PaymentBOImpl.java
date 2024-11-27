@@ -7,6 +7,7 @@ import org.example.dto.PaymentDTO;
 import org.example.entity.Payment;
 import org.example.entity.Register;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentBOImpl implements PaymentBO {
@@ -42,5 +43,29 @@ public class PaymentBOImpl implements PaymentBO {
                 paymentDTO.getBalance(),
                 paymentDTO.getRegister()
         ));
+    }
+
+    @Override
+    public Payment search(String id) {
+        return null;
+    }
+
+
+    @Override
+    public List<PaymentDTO> getAll() {
+        List<PaymentDTO>paymentDTOS = new ArrayList<>();
+        List<Payment> payments = paymentDAO.getAll();
+        for (Payment payment : payments) {
+            paymentDTOS.add(new PaymentDTO(
+                    payment.getPaymentId(),
+                    payment.getAmount(),
+                    payment.getPaidAmount(),
+                    payment.getFullPayment(),
+                    payment.getPay(),
+                    payment.getBalance(),
+                    payment.getRegister()
+            ));
+        }
+        return paymentDTOS;
     }
 }

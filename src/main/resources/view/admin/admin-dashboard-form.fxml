@@ -6,19 +6,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootNode" prefHeight="623.0" prefWidth="863.0" style="-fx-background-color: #1B1464;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminDashboardFormController">
+<AnchorPane fx:id="rootNode" prefHeight="623.0" prefWidth="863.0" style="-fx-background-color: #1B1464;" stylesheets="@../../assets/styles/adminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminDashboardFormController">
     <children>
-        <AnchorPane fx:id="root" layoutX="4.0" layoutY="4.0" prefHeight="615.0" prefWidth="216.0" style="-fx-background-color: #b8e994; -fx-background-radius: 10;">
+        <AnchorPane fx:id="root" layoutX="4.0" layoutY="4.0" prefHeight="615.0" prefWidth="216.0" style="-fx-background-color: #fce3a2; -fx-background-radius: 10;">
             <children>
-            <Circle fill="#63cdda" layoutX="52.0" layoutY="317.0" radius="12.0" stroke="#63cdda" strokeType="INSIDE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63cdda" height="317.0" layoutX="40.0" stroke="#63cdda" strokeType="INSIDE" strokeWidth="0.0" width="24.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63cdda" height="615.0" layoutX="7.0" stroke="#63cdda" strokeType="INSIDE" strokeWidth="0.0" width="24.0" />
-                <JFXButton fx:id="btnCourseFrom" buttonType="RAISED" layoutX="9.0" layoutY="84.0" onAction="#btnCourseFormOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-background-color: #f5f6fa; -fx-border-radius: 20; -fx-background-radius: 10;" text="Manage Courses">
+                <JFXButton fx:id="btnCourseFrom" buttonType="RAISED" layoutX="9.0" layoutY="84.0" onAction="#btnCourseFormOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-border-radius: 20; -fx-background-radius: 10;" text="Manage Courses">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -33,7 +28,7 @@
                   </ImageView>
                </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnStudentForm" buttonType="RAISED" layoutX="9.0" layoutY="19.0" onAction="#btnStudentFormnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-background-color: #f5f6fa; -fx-border-radius: 20; -fx-background-radius: 10;" text="Manage Students">
+                <JFXButton fx:id="btnStudentForm" buttonType="RAISED" layoutX="9.0" layoutY="19.0" onAction="#btnStudentFormnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-border-radius: 20; -fx-background-radius: 10;" text="Manage Students">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -48,22 +43,15 @@
                   </ImageView>
                </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnDashbord" buttonType="RAISED" layoutX="14.0" layoutY="541.0" onAction="#btnDashboardFormOnActin" prefHeight="28.0" prefWidth="88.0" style="-fx-background-color: #f5f6fa; -fx-background-radius: 5;" text="Dashboard">
+                <JFXButton fx:id="btnDashbord" buttonType="RAISED" layoutX="14.0" layoutY="541.0" onAction="#btnDashboardFormOnActin" prefHeight="28.0" prefWidth="88.0" style="-fx-background-radius: 5;" text="Dashboard">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
                <font>
-                  <Font name="System Bold" size="10.0" />
+                  <Font size="10.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/dashboard.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
                 </JFXButton>
-            <JFXButton fx:id="btnMangeDetalis" buttonType="RAISED" layoutX="10.0" layoutY="149.0" onAction="#btnManageDetailsOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-background-color: #f5f6fa; -fx-border-radius: 20; -fx-background-radius: 10;" text=" Manage Details  ">
+            <JFXButton fx:id="btnMangeDetalis" buttonType="RAISED" layoutX="10.0" layoutY="149.0" onAction="#btnManageDetailsOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-border-radius: 20; -fx-background-radius: 10;" text=" Payment Details  ">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -78,7 +66,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <ImageView fx:id="btnSetting" fitHeight="23.0" fitWidth="43.0" layoutX="8.0" layoutY="579.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btnSetting" fitHeight="23.0" fitWidth="43.0" layoutX="8.0" layoutY="579.0" onMouseClicked="#iconSettingsOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/icons/setting.png" />
                </image>
@@ -86,22 +74,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="111.0" layoutY="541.0" onAction="#btnLogOutOnAction" prefHeight="28.0" prefWidth="88.0" style="-fx-background-color: #ff6b6b; -fx-background-radius: 5;" text="Log out">
+            <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="111.0" layoutY="541.0" onAction="#btnLogOutOnAction" prefHeight="28.0" prefWidth="88.0" style="-fx-background-radius: 5;" text="Log out">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="System Bold" size="10.0" />
+                  <Font size="10.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/icons/logout.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnUserManage" buttonType="RAISED" layoutX="11.0" layoutY="215.0" onAction="#btnUserManageOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-background-color: #f5f6fa; -fx-border-radius: 20; -fx-background-radius: 10;" text="   User Manage   ">
+            <JFXButton fx:id="btnEnrollmentDetails" buttonType="RAISED" layoutX="11.0" layoutY="215.0" onAction="#btnEnrollmentDetailsOnAction" prefHeight="55.0" prefWidth="197.0" style="-fx-border-radius: 20; -fx-background-radius: 10;" text="Enrollment Details">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -111,27 +92,32 @@
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../assets/icons/user.png" />
+                        <Image url="@../../assets/icons/enrollment.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="node" layoutX="224.0" layoutY="3.0" prefHeight="616.0" prefWidth="635.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+        <AnchorPane fx:id="node" layoutX="224.0" layoutY="3.0" prefHeight="616.0" prefWidth="635.0" style="-fx-background-color: #fbfbfb; -fx-background-radius: 10;">
             <children>
+            <ImageView fitHeight="510.0" fitWidth="622.0" layoutX="7.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/animate/image_processing20191104-3658-12n18dk.gif" />
+               </image>
+            </ImageView>
                 <Text layoutX="17.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome..." wrappingWidth="346.5574645996094">
                     <font>
                         <Font name="System Bold Italic" size="64.0" />
                     </font>
                 </Text>
-                <Label layoutX="54.0" layoutY="101.0" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
+                <Label layoutX="54.0" layoutY="101.0" opacity="0.11" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
                 <Text fill="#0c2461" layoutX="80.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Count In the System :" wrappingWidth="152.00347900390625">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Text>
-                <Label layoutX="338.0" layoutY="101.0" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
+                <Label layoutX="338.0" layoutY="101.0" opacity="0.11" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
                 <Text fill="#0c2461" layoutX="364.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses Count In the System :" wrappingWidth="152.00347900390625">
                     <font>
                         <Font size="25.0" />

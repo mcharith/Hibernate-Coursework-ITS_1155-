@@ -87,3 +87,12 @@
 #lblUserId:hover{
     --fx-background-color: #f3e5f5;
 }
+
+#btnSearch{
+    -fx-background-color: #59d98e;
+    -fx-text-fill: white;
+}
+#btnSearch:hover{
+    -fx-background-color: #2abb67;
+    -fx-font-weight: bold;
+}

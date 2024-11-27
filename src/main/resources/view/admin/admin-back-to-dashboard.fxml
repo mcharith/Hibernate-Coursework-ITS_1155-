@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="635.0" style="-fx-background-color: #fbfbfb; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminAgainDashboardForm">
+   <children>
+      <ImageView fitHeight="463.0" fitWidth="624.0" layoutX="9.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/animate/image_processing20191104-3658-12n18dk.gif" />
+         </image>
+      </ImageView>
+      <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome..." wrappingWidth="346.5574645996094">
+         <font>
+            <Font name="System Bold Italic" size="64.0" />
+         </font>
+      </Text>
+      <Label layoutX="64.0" layoutY="111.0" opacity="0.11" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
+      <Text fill="#0c2461" layoutX="90.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Count In the System :" wrappingWidth="152.00347900390625">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblStudent" layoutX="186.0" layoutY="196.0" prefHeight="42.0" prefWidth="71.0" text="10">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="348.0" layoutY="111.0" opacity="0.11" prefHeight="156.0" prefWidth="245.0" style="-fx-background-color: #f1f2f6; -fx-background-radius: 20; -fx-border-color: #130f40; -fx-border-radius: 20;" />
+      <Text fill="#0c2461" layoutX="374.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses Count In the System :" wrappingWidth="152.00347900390625">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblCourse" layoutX="470.0" layoutY="197.0" prefHeight="42.0" prefWidth="71.0" text="10">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="473.0" layoutY="20.0" prefHeight="23.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime" layoutX="473.0" layoutY="52.0" prefHeight="23.0" prefWidth="150.0" text="Label">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -83,8 +83,8 @@ public class StudentAddProgramFormController {
         clmRegisterID.setCellValueFactory(new PropertyValueFactory<>("registerId"));
         clmAdvancedAmount.setCellValueFactory(new PropertyValueFactory<>("advanced"));
         clmDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        clmProgramID.setCellValueFactory(new PropertyValueFactory<>("programID")); // Use the new method
-        clmStudentID.setCellValueFactory(new PropertyValueFactory<>("studentID")); // Use the new method
+        clmProgramID.setCellValueFactory(new PropertyValueFactory<>("programID"));
+        clmStudentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
     }
     private void setDate() {
         LocalDate now = LocalDate.now();

@@ -7,8 +7,10 @@ import org.example.entity.User;
 import java.util.List;
 
 public interface UserBO extends SuperBo{
-    public boolean save(UserDTO userDTO);
-    public boolean update(UserDTO userDTO);
+    boolean save(UserDTO userDTO);
+    boolean update(UserDTO userDTO);
+    boolean delete(String id);
+    User search(String id);
     String getCurrentId();
     List<UserDTO>getAll();
     User searchByEmail(String email);

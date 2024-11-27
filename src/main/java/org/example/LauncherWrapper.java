@@ -16,7 +16,7 @@ public class LauncherWrapper extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/login-form.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/admin/admin-dashboard-form.fxml"))));
         stage.setTitle("Login Page");
         stage.centerOnScreen();
         stage.show();

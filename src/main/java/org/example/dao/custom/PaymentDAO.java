@@ -11,5 +11,4 @@ public interface PaymentDAO extends CrudDAO {
     int getPaidAmountByRegisterId(Register registerId);
     int getFullFeeByRegisterId(Register selectedRegisterId);
     int getRemainingAmountByRegisterId(Register selectedRegisterId);
-//    int getBalanceByRegisterId(Register selectedRegisterId);
 }

@@ -3,6 +3,7 @@ package org.example.dao.custom.impl;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.CourseDAO;
 import org.example.entity.Course;
+import org.example.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -81,18 +82,17 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public Course search(String id) {
-            Session session = FactoryConfiguration.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
-            // Corrected native query
-            NativeQuery<Course> nativeQuery = session.createNativeQuery("select * from Course where programId = :id", Course.class);
-            nativeQuery.setParameter("id", id);
+        NativeQuery<Course> nativeQuery = session.createNativeQuery("select * from Course where programId = :id", Course.class);
+        nativeQuery.setParameter("id", id);
 
-            List<Course> list = nativeQuery.list();
-            transaction.commit();
-            session.close();
+        List<Course> list = nativeQuery.list();
+        transaction.commit();
+        session.close();
 
-            return list.isEmpty() ? null : list.get(0); // Added null check to avoid IndexOutOfBoundsException
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override

@@ -5,4 +5,5 @@ import org.example.entity.Admin;
 
 public interface AdminDAO extends CrudDAO<Admin> {
     String getCurrentId();
+    Admin searchByEmail(String email);
 }

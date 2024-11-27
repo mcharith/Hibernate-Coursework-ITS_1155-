@@ -2,9 +2,7 @@ package org.example.dao.custom.impl;
 
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.RegisterDAO;
-import org.example.entity.Course;
-import org.example.entity.Register;
-import org.example.entity.Student;
+import org.example.entity.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -12,7 +10,6 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class RegisterDAOImpl implements RegisterDAO {
     @Override
@@ -96,12 +93,10 @@ public class RegisterDAOImpl implements RegisterDAO {
         return false;
     }
 
-
     @Override
     public Register search(String id) {
         return null;
     }
-
     @Override
     public Register get(Register object) {
         return null;

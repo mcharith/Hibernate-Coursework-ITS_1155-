@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="rootNode" prefHeight="616.0" prefWidth="635.0" stylesheets="@../../assets/styles/userManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminStudentProgramDetailsForm">
+   <children>
+      <Text layoutX="8.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Program Enrollment Details">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtIds" layoutX="41.0" layoutY="55.0" prefHeight="30.0" prefWidth="330.0" />
+      <ImageView fitHeight="30.0" fitWidth="43.0" layoutX="10.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/icons/search.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnSearch" layoutX="380.0" layoutY="55.0" onAction="#btnSearchOnAction" prefHeight="30.0" prefWidth="82.0" text="Search" />
+      <Line endX="528.0" layoutX="109.0" layoutY="45.0" startX="-109.0" />
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="565.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/icons/enrollment.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblEnrollmentDetails" layoutX="10.0" layoutY="98.0" prefHeight="508.0" prefWidth="617.0">
+        <columns>
+          <TableColumn fx:id="clmRegisterId" prefWidth="122.0" text="Register ID" />
+          <TableColumn fx:id="clmStudentId" prefWidth="123.0" text="Student ID" />
+            <TableColumn fx:id="clmProgramId" prefWidth="128.0" text="Program ID" />
+            <TableColumn fx:id="clmAdvancedAmount" prefWidth="119.0" text="Advanced Amount" />
+            <TableColumn fx:id="clmDate" prefWidth="124.0" text="Registation Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
