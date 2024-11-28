@@ -12,6 +12,8 @@ import org.example.bo.custom.StudentBO;
 import org.example.dto.StudentDTO;
 import org.example.entity.Student;
 import org.example.entity.tm.StudentTm;
+import org.example.validation.Regex;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -117,15 +119,24 @@ public class StudentFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
-        boolean isSaved = studentBO.save(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),
-                txtEmail.getText(),Integer.parseInt(txtTelephone.getText()),txtDob.getText()));
-        if (isSaved) {
-            cleanTextFields();
-            loadAllStudents();
-            txtStudentId.setText(generateStudentId());
-            new Alert(Alert.AlertType.INFORMATION,"Student Added Successfully!", ButtonType.OK).show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"Student Added Failed!", ButtonType.OK).show();
+        if (isValid()) {
+            boolean isSaved = studentBO.save(new StudentDTO(
+                    txtStudentId.getText(),
+                    txtName.getText(),
+                    txtAddress.getText(),
+                    txtEmail.getText(),
+                    Integer.parseInt(txtTelephone.getText()),
+                    txtDob.getText()
+            ));
+
+            if (isSaved) {
+                cleanTextFields();
+                loadAllStudents();
+                txtStudentId.setText(generateStudentId());
+                new Alert(Alert.AlertType.INFORMATION, "Student Added Successfully!", ButtonType.OK).show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Student Adding Failed!", ButtonType.OK).show();
+            }
         }
     }
 
@@ -201,7 +212,56 @@ public class StudentFormController {
         }
     }
 
-    public void btnAddToCourseOnAction(ActionEvent actionEvent) {
+    private boolean isValid() {
+        // Validate name
+        if (txtName.getText().isEmpty() || !txtName.getText().matches("[A-Za-z ]+")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name! Name should only contain alphabets and spaces.", ButtonType.OK).show();
+            txtName.requestFocus();
+            return false;
+        }
 
+        // Validate address
+        if (txtAddress.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Address cannot be empty!", ButtonType.OK).show();
+            txtAddress.requestFocus();
+            return false;
+        }
+
+        // Validate email
+        if (!txtEmail.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+            setErrorStyle(txtEmail);
+            new Alert(Alert.AlertType.ERROR, "Invalid Email Address!", ButtonType.OK).show();
+            txtEmail.requestFocus();
+            return false;
+        }else {
+            resetStyle(txtEmail);
+        }
+
+        // Validate telephone
+        if (!txtTelephone.getText().matches("\\d{10}")) {
+            setErrorStyle(txtTelephone);
+            new Alert(Alert.AlertType.ERROR, "Invalid Telephone Number! Telephone should be 10 digits.", ButtonType.OK).show();
+            txtTelephone.requestFocus();
+            return false;
+        }else {
+            resetStyle(txtTelephone);
+        }
+
+        // Validate date of birth (DOB)
+        if (txtDob.getText().isEmpty() || !txtDob.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid DOB! Use the format YYYY-MM-DD.", ButtonType.OK).show();
+            txtDob.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void setErrorStyle(TextField textField) {
+        textField.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+    }
+
+    private void resetStyle(TextField textField) {
+        textField.setStyle(null);
     }
 }

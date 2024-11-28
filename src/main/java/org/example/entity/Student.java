@@ -28,6 +28,15 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Register>registers;
 
+//    public Student(String studentId, String studentName, String address, String email, int telephone, String dob) {
+//    }
+
     public Student(String studentId, String studentName, String address, String email, int telephone, String dob) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.address = address;
+        this.email = email;
+        this.telephone = telephone;
+        this.dob = dob;
     }
 }

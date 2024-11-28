@@ -99,3 +99,15 @@
 /*    -fx-background-color: #45A049;*/
 /*}*/
 
+
+/* styles.css */
+.text-field-valid {
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+}
+
+.text-field-invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+}
+

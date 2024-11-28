@@ -17,6 +17,7 @@ import org.example.validation.Regex;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 public class RegisterFormController {
     public AnchorPane node;
@@ -34,7 +35,6 @@ public class RegisterFormController {
     AdminBO adminBO = (AdminBO) BOFactory.getBOFactory().getBOType(BOFactory.BOType.Admin);
 
     public void initialize() {
-        //genarateUserId();
         cmbAccountType.getItems().addAll("User","Admin");
     }
 
@@ -58,7 +58,14 @@ public class RegisterFormController {
     }
 
     public void btnRegisterOnAction(ActionEvent actionEvent) {
-        // Collect input values
+        boolean isTeleValid = validateTelephone(txtTele);
+        boolean isPasswordValid = validatePassword(txPassword);
+
+        if (!isTeleValid || !isPasswordValid) {
+            new Alert(Alert.AlertType.ERROR, "Please correct the highlighted fields").show();
+            return;
+        }
+
         String id = txtId.getText();
         String name = txtName.getText();
         String teleStr = txtTele.getText();
@@ -67,13 +74,11 @@ public class RegisterFormController {
         String password = txPassword.getText();
         String rePassword = txtConfirmPassword.getText();
 
-        // Validate if any required field is empty
         if (id.isEmpty() || name.isEmpty() || teleStr.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type == null) {
             new Alert(Alert.AlertType.ERROR, "All fields are required").show();
             return;
         }
 
-        // Validate telephone as a number
         int tele;
         try {
             tele = Integer.parseInt(teleStr);
@@ -82,36 +87,29 @@ public class RegisterFormController {
             return;
         }
 
-        // Check if passwords match
         if (!password.equals(rePassword)) {
             new Alert(Alert.AlertType.ERROR, "Passwords do not match").show();
             return;
         }
 
-        // Validate email and password using Regex
-//        if (!Regex.validateEmail(email) || !Regex.validatePassword(password)) {
-//            new Alert(Alert.AlertType.ERROR, "Invalid email or password format").show();
-//            return;
-//        }
+        if (!Regex.validateEmail(email)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid email or password format").show();
+            return;
+        }
 
-        // Save data to the appropriate table based on account type
         try {
             if (type.equals("Admin")) {
-                // Save to Admin table
                 adminBO.save(new AdminDTO(id, name, tele, email, password));
             } else if (type.equals("User")) {
-                // Save to User table
                 userBO.save(new UserDTO(id,name,tele,email,password));
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid account type selected").show();
                 return;
             }
 
-            // Clear fields and show success message
             cleanFields();
             new Alert(Alert.AlertType.INFORMATION, "Successfully registered").show();
 
-            // Generate a new user ID
             txtId.setText(genarateUserId());
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,5 +135,35 @@ public class RegisterFormController {
         txtEmail.clear();
         txPassword.clear();
         txtConfirmPassword.clear();
+    }
+
+    private boolean validateTelephone(TextField textField) {
+        String input = textField.getText();
+        boolean isValid = input.matches("\\d{10}");
+        updateTextFieldStyle(textField, isValid);
+        return isValid;
+    }
+
+    private boolean validatePassword(TextField textField) {
+        String input = textField.getText();
+        boolean isValid = input.length() >= 6;
+        updateTextFieldStyle(textField, isValid);
+        return isValid;
+    }
+//    public static boolean validatePassword(String password) {
+//    String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+//    Pattern pat = Pattern.compile(passwordRegex);
+//    if (password == null)
+//        return false;
+//    return pat.matcher(password).matches();
+//    }
+
+    private void updateTextFieldStyle(TextField textField, boolean isValid) {
+        textField.getStyleClass().removeAll("text-field-valid", "text-field-invalid");
+        if (isValid) {
+            textField.getStyleClass().add("text-field-valid");
+        } else {
+            textField.getStyleClass().add("text-field-invalid");
+        }
     }
 }

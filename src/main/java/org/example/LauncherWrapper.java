@@ -3,8 +3,6 @@ package org.example;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,7 +14,7 @@ public class LauncherWrapper extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/admin/admin-dashboard-form.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/login-form.fxml"))));
         stage.setTitle("Login Page");
         stage.centerOnScreen();
         stage.show();
